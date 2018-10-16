@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 
 const { originCheck } = require('./middleware/origin-check')
 const { Client } = require('./models/Client')
+require('./mailer/mailer')
 
 const app = express()
 app.use(bodyParser.json())
