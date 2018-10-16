@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 
 const { originCheck } = require('./middleware/origin-check')
 const { Client } = require('./models/Client')
-require('./mailer/mailer')
+const  {sendMail} = require('./mailer/mailer')
 
 const app = express()
 app.use(bodyParser.json())
@@ -19,7 +19,9 @@ app.get('/', (req, res) => {
 app.post('/api/v1', originCheck, (req, res) => {
   const body = _.pick(req.body, ['firstName','lastName','email','phoneNumber','message'])
   let client = new Client(body)
-  
+
+  sendMail(body)
+
   client.save().then(dbRes => {
     res.send(dbRes)
   }).catch(err => {
