@@ -1,10 +1,11 @@
 require('./config/config')
 
-const express = require('express')
 const _ = require('lodash')
+const express = require('express')
 const bodyParser = require('body-parser')
 
 const { originCheck } = require('./middleware/origin-check')
+const { Client } = require('./models/Client')
 
 const app = express()
 app.use(bodyParser.json())
@@ -15,13 +16,14 @@ app.get('/', (req, res) => {
 })
 
 app.post('/api/v1', originCheck, (req, res) => {
-  const body = req.body
-  for (let key in body) {
-    if(body.hasOwnProperty(key)){
-      // console.log(body[key])
-    }
-  }
-  res.send('API under construction')
+  const body = _.pick(req.body, ['firstName','lastName','email','phoneNumber','message'])
+  let client = new Client(body)
+  
+  client.save().then(dbRes => {
+    res.send(dbRes)
+  }).catch(err => {
+    res.status(500).send(err)
+  })
 })
 
 
