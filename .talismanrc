@@ -1,6 +1,5 @@
-
 fileignoreconfig:
 - filename: server/mailer/mailer.js
-  checksum: aedc3a20a9ae2f213410ba279240f4e1b3683d2a7d300b9822dcc262bcf8cc6e
+  checksum: 2b584baeda981af11d673825d30381bbb78b3ea022aef616696ea797aef9016d
   ignore_detectors: []
 

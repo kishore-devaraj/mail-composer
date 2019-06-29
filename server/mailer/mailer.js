@@ -7,16 +7,13 @@ const smtpTransport = mailer.createTransport({
     secure: false,
     requireTLS: false,
     auth: {
-        user: JSON.stringify(process.env.emailId),
-        pass: JSON.stringify(process.env.password)
+        user: process.env.emailId,
+        pass: process.env.password
     }
 })
 
 
 function sendMail(clientData) {
-    console.log(JSON.stringify(process.env.emailId))
-    console.log(process.env.emailId)
-    
     let mail = {
         from: "kishore.github.io@gmail.com",
         to: "kishoregrylls@gmail.com",
