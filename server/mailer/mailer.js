@@ -3,21 +3,24 @@
 const mailer = require('nodemailer')
 const auth = require('./mail-auth.json')
 const smtpTransport = mailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: auth.emailId,
-    pass: auth.password
-  }
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    requireTLS: true,
+    auth: {
+        user: auth.emailId,
+        pass: auth.password
+    }
 })
 
 
 function sendMail(clientData) {
-
-  let mail = {
-    from: "kishore.github.io@gmail.com",
-    to: "kishoregrylls@gmail.com",
-    subject: "Someone wants to have coffee with you!",
-    html: `Hi, 
+    let mail = {
+        from: "kishore.github.io@gmail.com",
+        to: "kishoregrylls@gmail.com",
+        subject: "Someone wants to have coffee with you!",
+        // language=HTML
+        html: `Hi, 
           <br/><br/>
           
           Someone has recently viewed your portfolio.<br/>
@@ -31,7 +34,7 @@ function sendMail(clientData) {
           <br/><br/>
           
           Good Luck!`
-  }
+    }
 
   smtpTransport.sendMail(mail, function (err, response) {
     if (err) {
@@ -43,7 +46,6 @@ function sendMail(clientData) {
   })
 }
 
-
 module.exports = {
-  sendMail
+    sendMail
 }

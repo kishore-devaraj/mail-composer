@@ -5,7 +5,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 
 const { originCheck } = require('./middleware/origin-check')
-const { Client } = require('./models/Client')
+// const { Client } = require('./models/Client')
 const  {sendMail} = require('./mailer/mailer')
 
 const app = express()
@@ -13,20 +13,15 @@ app.use(bodyParser.json())
 
 const PORT = process.env.PORT || 3000
 app.get('/', (req, res) => {
-  res.send('Working fine')
+  res.send('Mail server is up ;)')
 })
 
 app.post('/api/v1', originCheck, (req, res) => {
   const body = _.pick(req.body, ['firstName','lastName','email','phoneNumber','message'])
-  let client = new Client(body)
+  // let client = new Client(body)
 
   sendMail(body)
-
-  client.save().then(dbRes => {
-    res.send(dbRes)
-  }).catch(err => {
-    res.status(500).send(err)
-  })
+  res.send('Your details are now travelling on under water sea cables :P')
 })
 
 

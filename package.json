@@ -15,7 +15,7 @@
     "express": "^4.16.4",
     "lodash": "^4.17.11",
     "mongoose": "^5.3.4",
-    "nodemailer": "^4.6.8",
+    "nodemailer": "^6.2.1",
     "validator": "^10.8.0"
   },
   "devDependencies": {

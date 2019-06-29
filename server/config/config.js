@@ -1,11 +1,11 @@
 const env = process.env.NODE_ENV || 'development'
-console.log(env)
+console.log('Running in',env)
 
 if (env === 'development') {
-  const config = require('./config.json')
-  const envConfig = config[env]
-  
-  Object.keys(envConfig).forEach(key => {
-    process.env[key] = envConfig[key]
-  })
+  // const config = require('./config.json')
+  // const envConfig = config[env]
+  //
+  // Object.keys(envConfig).forEach(key => {
+  //   process.env[key] = envConfig[key]
+  // })
 }
