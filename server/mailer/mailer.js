@@ -1,15 +1,14 @@
 'use strict'
 
 const mailer = require('nodemailer')
-const auth = require('./mail-auth.json')
 const smtpTransport = mailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
     secure: false,
     requireTLS: true,
     auth: {
-        user: auth.emailId,
-        pass: auth.password
+        user: process.env.emailId,
+        pass: process.env.password
     }
 })
 
